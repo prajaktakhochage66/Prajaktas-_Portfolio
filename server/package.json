@@ -1,0 +1,7 @@
+{
+  "name": "prajakta-khochage-portfolio-server",
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {"dev":"node --watch server.js","start":"node server.js"},
+  "dependencies": {"cors":"^2.8.5","dotenv":"^16.6.1","express":"^5.1.0","mongoose":"^8.18.0"}
+}
