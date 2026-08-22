@@ -25,6 +25,7 @@ export const skills = [
   { group: 'Database & Cloud', icon: 'database', items: ['MongoDB Atlas', 'MySQL', 'Database Design', 'Cloudinary', 'Cloud Deployment'] },
   { group: 'Data & BI', icon: 'chart', items: ['Power BI', 'DAX', 'Data Analysis', 'Data Visualization', 'NumPy', 'Pandas'] },
   { group: 'Engineering', icon: 'cpu', items: ['MERN Stack', 'SDLC', 'OOP', 'System Design', 'Agile', 'Git', 'GitHub', 'Debugging'] },
+  { group: 'Tools', icon: 'code', items: ['VS Code', 'Power BI', 'GitHub', 'Postman', 'Figma', 'MongoDB Compass'] },
 ];
 
 export const experiences = [
@@ -111,7 +112,7 @@ export const publications = [
 ];
 
 export const education = [
-  { degree: 'B.E. — Computer Science & Engineering', org: 'D. Y. Patil College of Engineering & Technology, Kolhapur', period: '2024 – 2027', detail: 'Current academic program • 82.42% • Data Science / software development focus' },
+  { degree: 'B.Tech — Computer Science & Engineering', org: 'D. Y. Patil College of Engineering & Technology, Kolhapur', period: '2024 – 2027', detail: 'Current academic program • 82.42% • Data Science / software development focus' },
   { degree: 'Diploma in Computer Engineering', org: 'Sharad Institute of Technology, Polytechnic, Yadrav', period: '2021 – 2024', detail: 'MSBTE Diploma in Computer Engineering • 82.69% • Completed in 2024' },
   { degree: 'HSC — 12th', org: 'Balwantrao Zele Highschool & Junior College, Kurundwad', period: '2019 – 2021', detail: '87.33%' },
 ];
