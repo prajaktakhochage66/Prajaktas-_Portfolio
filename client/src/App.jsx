@@ -70,16 +70,35 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  const submitContact = async (e) => {
-    e.preventDefault();
-    const payload = Object.fromEntries(new FormData(e.currentTarget).entries());
-const API_URL = import.meta.env.VITE_API_URL || 'https://prajakts-portfolio.onrender.com/api';    try {
-      const res = await fetch(`${API_URL}/contact`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-      const data = await res.json();
-      setStatus(data.message || 'Thanks! Your message has been sent.');
-      e.currentTarget.reset();
-    } catch { setStatus(`Backend is not connected yet. Please email ${profile.email}.`); }
-  };
+ const submitContact = async (e) => {
+  e.preventDefault();
+
+  const payload = Object.fromEntries(
+    new FormData(e.currentTarget).entries()
+  );
+
+  const API_URL =
+    import.meta.env.VITE_API_URL ||
+    'https://prajakts-portfolio.onrender.com/api';
+
+  try {
+    const res = await fetch(`${API_URL}/contact`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+
+    setStatus(data.message || 'Thanks! Your message has been sent.');
+    e.currentTarget.reset();
+
+  } catch {
+    setStatus(`Backend is not connected yet. Please email ${profile.email}.`);
+  }
+};
 
   const nav = ['about','experience','projects','skills','achievements','certifications','education','contact'];
 
