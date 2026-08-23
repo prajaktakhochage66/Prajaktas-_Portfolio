@@ -8,7 +8,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(cors({ origin: process.env.CLIENT_ORIGIN?.split(',').map(x => x.trim()) || '*' }));
 app.use(express.json());
-
+app.get('/', (_req, res) => {
+  res.json({
+    message: 'Prajakta Portfolio Backend is Working!'
+  });
+});
 const contactSchema = new mongoose.Schema({
   name: { type: String, required: true, trim: true },
   email: { type: String, required: true, trim: true },
