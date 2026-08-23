@@ -35,18 +35,28 @@ function App() {
   const [typed, setTyped] = useState('');
   const [activeProject, setActiveProject] = useState('');
 
-  const roles = useMemo(() => ['Full-Stack Developer', 'Data Analytics', 'AI Researcher'], []);
+  const roles = useMemo(() => ['Data Analyst', 'AI Researcher', 'Full-Stack Developer'], []);
   useEffect(() => {
-    let i = 0, deleting = false, timer;
+    let roleIndex = 0;
+    let characterIndex = 0;
+    let deleting = false;
+    let timer;
     const tick = () => {
-      const word = roles[i];
-      setTyped((current) => deleting ? word.slice(0, current.length - 1) : word.slice(0, current.length + 1));
-      const currentLength = deleting ? word.length - 1 : word.length + 1;
-      if (!deleting && currentLength === word.length) { deleting = true; timer = setTimeout(tick, 1300); return; }
-      if (deleting && currentLength === 0) { deleting = false; i = (i + 1) % roles.length; }
-      timer = setTimeout(tick, deleting ? 55 : 90);
+      const role = roles[roleIndex];
+      characterIndex += deleting ? -1 : 1;
+      setTyped(role.slice(0, characterIndex));
+      if (!deleting && characterIndex === role.length) {
+        deleting = true;
+        timer = setTimeout(tick, 1500);
+        return;
+      }
+      if (deleting && characterIndex === 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+      timer = setTimeout(tick, deleting ? 45 : 75);
     };
-    timer = setTimeout(tick, 300);
+    timer = setTimeout(tick, 250);
     return () => clearTimeout(timer);
   }, [roles]);
 
@@ -118,11 +128,11 @@ function App() {
       </Section>
 
       <Section id="experience" number="02" eyebrow="Career journey" title="Experience that shaped how I work.">
-        <div className="timeline">{experiences.map((x,i) => <Reveal className="timeline-item" key={x.title}><span className="timeline-line" /><div className="timeline-marker">0{i+1}</div><article className="timeline-card glass-card"><div className="timeline-meta"><span>{x.period}</span><em>{x.tag}</em></div><h3>{x.title}</h3><h4>{x.org}</h4><p>{x.text}</p></article></Reveal>)}</div>
+        <div className="experience-grid">{experiences.map((x,i) => <Reveal className={`experience-card experience-card-${i + 1} glass-card`} key={x.title}><div className="experience-card-top"><span>0{i + 1}</span><em>{x.tag}</em></div><span className="experience-period">{x.period}</span><h3>{x.title}</h3><h4>{x.org}</h4><p>{x.text}</p></Reveal>)}</div>
       </Section>
 
       <Section id="projects" number="03" eyebrow="Featured work" title="Things I've built, explored and shipped.">
-        <div className="project-grid">{projects.map((p,i) => <Reveal className={`project-card glass-card ${activeProject === p.title ? 'is-clicked' : ''}`} key={p.title} onClick={() => { setActiveProject(p.title); setTimeout(() => setActiveProject(''), 420); }}><div className="project-glow" /><div className="project-top"><span>0{i+1}</span><small>{p.category}</small></div><div className="project-icon">{i===0?<FiBriefcase/>:i===1?<FiCpu/>:i===2?<FiBarChart2/>:<FiBookOpen/>}</div><h3>{p.title}</h3><p>{p.description}</p><div className="project-highlight"><FiCheckCircle /> {p.highlight}</div><div className="chips">{p.tech.map(t => <span key={t}>{t}</span>)}</div><div className="project-links">{p.title !== 'Eventora' && <a href={p.github} target="_blank" rel="noreferrer"><FiGithub /> Source <FiArrowUpRight /></a>}{p.demo !== '#' && <a href={p.demo} target="_blank" rel="noreferrer">Live demo <FiExternalLink /></a>}</div></Reveal>)}</div>
+        <div className="project-grid">{projects.map((p,i) => <Reveal className={`project-card glass-card ${activeProject === p.title ? 'is-clicked' : ''}`} key={p.title} onClick={() => { setActiveProject(p.title); setTimeout(() => setActiveProject(''), 420); }}><div className="project-glow" /><div className="project-top"><span>0{i+1}</span><small>{p.category}</small></div><div className="project-icon">{i===0?<FiBriefcase/>:i===1?<FiCpu/>:i===2?<FiBarChart2/>:<FiBookOpen/>}</div><h3>{p.title}</h3><p>{p.description}</p><div className="project-highlight"><FiCheckCircle /> {p.highlight}</div><div className="chips">{p.tech.map(t => <span key={t}>{t}</span>)}</div>{p.demo !== '#' && <div className="project-links"><a href={p.demo} target="_blank" rel="noreferrer">Live demo <FiExternalLink /></a></div>}</Reveal>)}</div>
       </Section>
 
       <Section id="skills" number="04" eyebrow="Tech arsenal" title="Tools I use to turn ideas into products.">

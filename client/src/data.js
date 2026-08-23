@@ -60,7 +60,16 @@ export const projects = [
     tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB Atlas', 'JWT', 'Cloudinary', 'Tailwind CSS'],
     highlight: 'Secure end-to-end MERN application',
     github: 'https://github.com/prajaktakhochage66/Eventora',
-    demo: 'https://eventora-portal.vercel.app',
+    demo: '#',
+  },
+  {
+    title: 'QuickBite',
+    category: 'Android \u2022 Food Inventory Management',
+    description: 'A native Android app for managing household food inventory, tracking quantities and expiry dates, and helping users reduce food waste with clear freshness status updates.',
+    tech: ['Java', 'Android SDK', 'SQLite', 'RecyclerView', 'Material UI'],
+    highlight: 'Food inventory and expiry tracking in one app',
+    github: 'https://github.com/prajaktakhochage66',
+    demo: '#',
   },
   {
     title: 'AI Pathshalaa',
