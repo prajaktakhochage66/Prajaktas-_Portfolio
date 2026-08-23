@@ -32,8 +32,17 @@ app.post('/api/contact', async (req, res) => {
 });
 
 mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/prajakta_portfolio')
-  .then(() => app.listen(PORT, () => console.log(`Portfolio API running on http://localhost:${PORT}`)))
-  .catch(() => {
-    console.log('MongoDB is unavailable. Starting API without database; contact form will show a configuration message.');
-    app.listen(PORT, () => console.log(`Portfolio API running on http://localhost:${PORT}`));
+  .then(() => {
+    console.log('MongoDB connected successfully!');
+    app.listen(PORT, () => {
+      console.log(`Portfolio API running on http://localhost:${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.log('MongoDB connection failed:');
+    console.log(error.message);
+
+    app.listen(PORT, () => {
+      console.log(`Portfolio API running on http://localhost:${PORT}`);
+    });
   });
