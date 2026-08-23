@@ -32,7 +32,7 @@ npm run dev
 
 Set `MONGO_URI` in `.env` for the contact form to store messages.
 
-The frontend uses `VITE_API_URL` when provided, otherwise `http://localhost:5000/api`.
+The frontend uses `VITE_API_URL` when provided, otherwise `https://prajakta-s-portfolio.onrender.com/api`.
 
 ## Deploy
 
