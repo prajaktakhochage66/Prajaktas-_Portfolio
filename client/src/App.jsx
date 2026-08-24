@@ -79,7 +79,7 @@ function App() {
 
   const API_URL =
     import.meta.env.VITE_API_URL ||
-    'https://prajakts-portfolio.onrender.com/api';
+    'https://prajakta-s-portfolio.onrender.com/api';
 
   try {
     const res = await fetch(`${API_URL}/contact`, {
