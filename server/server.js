@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 app.use(cors({ origin: process.env.CLIENT_ORIGIN?.split(',').map(x => x.trim()) || '*' }));
 app.use(express.json());
 app.get('/', (_req, res) => {
@@ -35,18 +35,13 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/prajakta_portfolio')
-  .then(() => {
-    console.log('MongoDB connected successfully!');
-    app.listen(PORT, () => {
-      console.log(`Portfolio API running on http://localhost:${PORT}`);
-    });
-  })
-  .catch((error) => {
-    console.log('MongoDB connection failed:');
-    console.log(error.message);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Portfolio API running on http://0.0.0.0:${PORT}`);
+});
 
-    app.listen(PORT, () => {
-      console.log(`Portfolio API running on http://localhost:${PORT}`);
-    });
+mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/prajakta_portfolio')
+  .then(() => console.log('MongoDB connected successfully!'))
+  .catch((error) => {
+    console.log('MongoDB connection failed. The API remains available, but contact messages cannot be saved.');
+    console.log(error.message);
   });
