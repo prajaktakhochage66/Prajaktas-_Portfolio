@@ -77,9 +77,9 @@ function App() {
     new FormData(e.currentTarget).entries()
   );
 
-  const API_URL =
-    import.meta.env.VITE_API_URL ||
-    'https://prajakta-s-portfolio.onrender.com/api';
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  'https://prajakts-portfolio.onrender.com/api';
 
   try {
     const res = await fetch(`${API_URL}/contact`, {
