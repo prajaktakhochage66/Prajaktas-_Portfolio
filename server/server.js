@@ -21,7 +21,13 @@ const contactSchema = new mongoose.Schema({
 }, { timestamps: true });
 const Contact = mongoose.model('Contact', contactSchema);
 
-app.get('/api/health', (_req, res) => res.json({ ok: true, message: 'Prajakta portfolio API is running.' }));
+app.get('/api/health', (req, res) => {
+  res.status(200).json({
+    ok: true,
+    message: 'Prajakta portfolio API is running!',
+    version: '2'
+  });
+});
 app.post('/api/contact', async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
